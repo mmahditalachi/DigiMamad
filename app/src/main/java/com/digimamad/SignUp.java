@@ -109,4 +109,11 @@ public class SignUp extends Activity {
         Intent intent = new Intent(this,HomePage.class);
         startActivity(intent);
     }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        String
+//
+//    }
+
 }

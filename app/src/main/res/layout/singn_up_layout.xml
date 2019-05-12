@@ -73,16 +73,17 @@
         android:layout_below="@id/last_name_singup"
         android:shadowColor="@color/gray"/>
 
-    <TextView
-        android:id="@+id/password_singup_2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Password"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_below="@id/email_singup"
-        android:shadowColor="@color/gray"/>
+            <TextView
+                android:id="@+id/password_singup_2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/email_singup"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:shadowColor="@color/gray"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
     <EditText
         android:id="@+id/password_singup"
