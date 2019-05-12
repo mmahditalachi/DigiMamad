@@ -15,6 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
     private static final String TAG = "MainPage";
+    public static int number;
     Context context;
     ArrayList<String> mImages;
 
@@ -32,13 +33,25 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        HomePage homePage = new HomePage();
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder,final int i) {
+        final HomePage homePage = new HomePage();
         viewHolder.imagetext.setText(homePage.products.get(i).getTitle());
+        viewHolder.price.setText(Integer.toString(homePage.products.get(i).getPrice()));
+
+        viewHolder.parent_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                number = homePage.products.get(i).getId();
+                GoToProduct();
+            }
+        });
+
         viewHolder.btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                number = homePage.products.get(i).getId();
                 GoToProduct();
+
             }
         });
 

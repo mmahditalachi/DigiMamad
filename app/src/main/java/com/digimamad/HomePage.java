@@ -44,24 +44,6 @@ public class HomePage extends Activity {
 
     private void initImageBitmaps(){
 
-//        mImageUrls.add("https://images-na.ssl-images-amazon.com/images/I/7140-XVajnL._SL1500_.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/qn7f9oqu7o501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/j6myfqglup501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/0h2gm1ix6p501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/glin0nwndo501.jpg");
-//
-//        mImageUrls.add("https://i.redd.it/obx4zydshg601.jpg");
-//
-//        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
-
         initRecyclerView();
     }
     private void initRecyclerView(){

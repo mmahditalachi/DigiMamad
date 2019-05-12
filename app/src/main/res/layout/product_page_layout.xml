@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/product_image_product_page"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+    <TextView
+        android:id="@+id/product_name_product_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Galaxy S7"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_below="@id/product_image_product_page"
+        android:textSize="30sp"
+        android:shadowColor="@color/gray"/>
+<TextView
+    android:id="@+id/information_product_page"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_below="@id/product_name_product_page"
+    android:textColor="@color/black"
+    android:text="goshie mamade amme kharabe"
+    android:textSize="20sp"/>
+
+    <LinearLayout
+        android:id="@+id/linear_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/information_product_page"
+        android:layout_marginTop="3dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/pricetext_product_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="price:  "
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+
+
+
+        <TextView
+            android:id="@+id/price_product_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100$"
+            android:textColor="@color/red"
+            android:textSize="30sp"
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/comment_btn_product_page"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/linear_price"
+        android:text="Comments"
+        android:textSize="20sp"
+        android:background="@color/green"
+        android:layout_marginTop="5dp"/>
+    <Button
+        android:id="@+id/addtobag_btn_product_page"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Add to Bag"
+        android:layout_alignParentBottom="true"
+        android:background="@color/green"
+        android:textSize="20sp"
+        android:textStyle="bold
+"/>
+
+
+</RelativeLayout>
