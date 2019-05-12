@@ -1,17 +1,11 @@
 package com.digimamad;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-
 import com.digimamad.model.Products;
-import com.digimamad.model.Users;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +30,7 @@ public class HomePage extends Activity {
         while (!c.isAfterLast()) {
 
             int number = c.getInt(6);
-            int image = c.getInt(5);
+            String image = c.getString(5);
             int id = c.getInt(4);
             String color = c.getString(3);
             String details = c.getString(2);
@@ -50,23 +44,23 @@ public class HomePage extends Activity {
 
     private void initImageBitmaps(){
 
-        mImageUrls.add("https://images-na.ssl-images-amazon.com/images/I/7140-XVajnL._SL1500_.jpg");
-
-        mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg");
-
-        mImageUrls.add("https://i.redd.it/qn7f9oqu7o501.jpg");
-
-        mImageUrls.add("https://i.redd.it/j6myfqglup501.jpg");
-
-        mImageUrls.add("https://i.redd.it/0h2gm1ix6p501.jpg");
-
-        mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg");
-
-        mImageUrls.add("https://i.redd.it/glin0nwndo501.jpg");
-
-        mImageUrls.add("https://i.redd.it/obx4zydshg601.jpg");
-
-        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
+//        mImageUrls.add("https://images-na.ssl-images-amazon.com/images/I/7140-XVajnL._SL1500_.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/tpsnoz5bzo501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/qn7f9oqu7o501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/j6myfqglup501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/0h2gm1ix6p501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/k98uzl68eh501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/glin0nwndo501.jpg");
+//
+//        mImageUrls.add("https://i.redd.it/obx4zydshg601.jpg");
+//
+//        mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
 
         initRecyclerView();
     }
@@ -76,7 +70,5 @@ public class HomePage extends Activity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
 }

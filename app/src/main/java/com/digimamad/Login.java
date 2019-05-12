@@ -104,6 +104,7 @@ public class Login extends Activity {
                 if(u_username_correct && u_pass_correct)
                     GoToHomePage();
 
+
 //                else if(d_username_correct && d_pass_correct)
 //                    GoToDriverPage();
                 else

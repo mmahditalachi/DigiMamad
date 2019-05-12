@@ -2,14 +2,14 @@ package com.digimamad.model;
 
 public class Products {
     private String title;
-    private int image;
+    private String image;
     private String details;
     private String color;
     private int price;
     private int number;
     private int id;
 
-    public Products(String title, String details, String color, int price, int id,int number,int image) {
+    public Products(String title, String details, String color, int price, int id,int number,String image) {
         this.title = title;
         this.details = details;
         this.color = color;
@@ -19,11 +19,11 @@ public class Products {
         this.number = number;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

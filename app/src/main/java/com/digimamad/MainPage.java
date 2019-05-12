@@ -33,21 +33,26 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final HomePage homePage = new HomePage();
-
+        HomePage homePage = new HomePage();
         viewHolder.imagetext.setText(homePage.products.get(i).getTitle());
         viewHolder.btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homePage.GoToProduct();
+                GoToProduct();
             }
         });
 
 
         Glide.with(context)
                 .asBitmap()
-                .load(mImages.get(i))
+                .load(homePage.products.get(i).getImage())
                 .into(viewHolder.image);
+    }
+
+    public void GoToProduct()
+    {
+        Intent intent = new Intent(this.context,ProductHomePage.class);
+        context.startActivity(intent);
     }
 
     @Override
@@ -57,6 +62,7 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+
 
         CircleImageView image;
         TextView imagetext,price;
