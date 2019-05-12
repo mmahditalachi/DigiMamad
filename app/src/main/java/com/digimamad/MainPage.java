@@ -39,7 +39,7 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
         viewHolder.btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                homePage.GoToProduct();
             }
         });
 

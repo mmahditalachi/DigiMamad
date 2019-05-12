@@ -77,10 +77,6 @@ public class HomePage extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    public void GoToProduct()
-    {
-        Intent intent = new Intent(this,ProductHomePage.class);
-        startActivity(intent);
-    }
+
 
 }
