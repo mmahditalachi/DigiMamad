@@ -105,8 +105,9 @@ public class Login extends Activity {
                     GoToHomePage();
 
 
-//                else if(d_username_correct && d_pass_correct)
-//                    GoToDriverPage();
+                else if(m_username_correct && m_pass_correct)
+                    GoToManagerPage();
+
                 else
                     Alert();
             }
@@ -192,10 +193,10 @@ public class Login extends Activity {
         startActivity(intent);
     }
 
-//    public void GoToDriverPage()
-//    {
-//        Intent intent = new Intent(this,DriverMain.class);
-//        startActivity(intent);
-//    }
+    public void GoToManagerPage()
+    {
+        Intent intent = new Intent(this,ControlPanel.class);
+        startActivity(intent);
+    }
 
 }

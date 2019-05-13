@@ -4,6 +4,14 @@
     android:layout_margin="10dp"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/panel_title_1"
         android:layout_width="match_parent"
@@ -12,9 +20,9 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="Name new product" />
+        android:text="Name of the new product" />
 
-    <TextView
+    <EditText
         android:id="@+id/panel_title_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_title_1"
@@ -25,19 +33,20 @@
         android:hint="Name"
         android:backgroundTint="@color/green"
          />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:id="@+id/panel_detail_1"
-        android:layout_below="@+id/panel_title_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Name new product" />
 
     <TextView
+        android:id="@+id/panel_detail_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_title_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="details"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/panel_detail_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_detail_1"
@@ -48,19 +57,20 @@
         android:hint="phone..."
         android:backgroundTint="@color/green"
         />
-    <TextView
-        android:id="@+id/panel_price_1"
-        android:layout_below="@+id/panel_detail_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Name new product" />
 
     <TextView
+        android:id="@+id/panel_price_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_detail_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="price"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/panel_price_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_price_1"
@@ -71,19 +81,20 @@
         android:hint="20"
         android:backgroundTint="@color/green"
         />
-    <TextView
-        android:id="@+id/panel_image_1"
-        android:layout_below="@+id/panel_price_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Name new product" />
 
     <TextView
+        android:id="@+id/panel_image_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_price_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="image url"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/panel_image_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_image_1"
@@ -94,19 +105,20 @@
         android:hint="http://..."
         android:backgroundTint="@color/green"
         />
-    <TextView
-        android:id="@+id/panel_color_1"
-        android:layout_below="@+id/panel_image_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Name new product" />
 
     <TextView
+        android:id="@+id/panel_color_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_image_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="color"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/panel_color_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_color_1"
@@ -117,19 +129,20 @@
         android:hint="red"
         android:backgroundTint="@color/green"
         />
-    <TextView
-        android:id="@+id/panel_number_1"
-        android:layout_below="@+id/panel_color_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:text="Name new product" />
 
     <TextView
+        android:id="@+id/panel_number_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_color_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="number"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/panel_number_2"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/panel_number_1"
@@ -142,10 +155,16 @@
         />
 
     <Button
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:text="Add"
+        android:id="@+id/add_btn"
         android:textSize="20dp"
         android:background="@drawable/rounded_btn"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/panel_number_2"
         android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

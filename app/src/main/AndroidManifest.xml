@@ -65,6 +65,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ControlPanel"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SignUp"
             android:screenOrientation="portrait">
             <intent-filter>
