@@ -21,7 +21,7 @@ public class Login extends Activity {
     public static int list_number;
     private TextView signUp;
     static String username_database,pass_database;
-    static List<Users> u_info;
+    public static List<Users> u_info;
     public static List<Manager> m_info;
     public static boolean u_username_correct=false;
     public static boolean u_pass_correct=false;

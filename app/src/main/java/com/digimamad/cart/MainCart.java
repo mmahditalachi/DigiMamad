@@ -5,8 +5,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.digimamad.DatabaseAccess;
+import com.digimamad.Login;
 import com.digimamad.MainPage;
 import com.digimamad.R;
 import com.digimamad.model.Cart;
@@ -17,7 +20,6 @@ import java.util.List;
 
 public class MainCart extends Activity {
     public static List<Cart> cartList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class MainCart extends Activity {
         cartList = new ArrayList<>();
         DatabaseAccess dbAccess = new DatabaseAccess(this);
 
-        Cursor c = dbAccess.getDb().rawQuery("SELECT * FROM cart", null);
+        Cursor c = dbAccess.getDb().rawQuery("SELECT * FROM cart where username = '"+ Login.u_info.get(Login.list_number).getUsername()+"'", null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
 

@@ -41,6 +41,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         viewHolder.imagetext.setText(MainCart.cartList.get(i).getTitle());
         viewHolder.price.setText(Integer.toString(MainCart.cartList.get(i).getPrice()));
 
+
         Glide.with(context)
                 .asBitmap()
                 .load(MainCart.cartList.get(i).getImage())
@@ -59,10 +60,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         RelativeLayout parent_layout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.image);
-            imagetext = itemView.findViewById(R.id.image_name);
-            parent_layout = itemView.findViewById(R.id.parent_layout);
-            price= itemView.findViewById(R.id.product_price);
+            image = itemView.findViewById(R.id.cart_image);
+            imagetext = itemView.findViewById(R.id.cart_image_name);
+            parent_layout = itemView.findViewById(R.id.cart_parent_layout);
+            price= itemView.findViewById(R.id.cart_product_price);
         }
     }
 }

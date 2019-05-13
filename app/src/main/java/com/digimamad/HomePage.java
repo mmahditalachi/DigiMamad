@@ -1,21 +1,40 @@
 package com.digimamad;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+
+import com.digimamad.cart.MainCart;
 import com.digimamad.model.Products;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends Activity {
     public static List<Products> products;
+    private Button goto_ntn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page_layout);
         SelectDataFromDatabase();
         initImageBitmaps();
+        goto_ntn = findViewById(R.id.gotocart);
+
+        goto_ntn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GoToCart();
+            }
+        });
+    }
+    private void GoToCart()
+    {
+        Intent intent = new Intent(this, MainCart.class);
+        startActivity(intent);
     }
 
     public void SelectDataFromDatabase()
