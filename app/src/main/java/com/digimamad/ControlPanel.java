@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class ControlPanel extends Activity {
 
-    private EditText title,price,color,number,image,details;
+    private EditText title,price,color,number,image,details,discount;
     private Button add_btn;
 
     @Override
@@ -26,6 +26,7 @@ public class ControlPanel extends Activity {
         image = findViewById(R.id.panel_image_2);
         details = findViewById(R.id.panel_detail_2);
         add_btn = findViewById(R.id.add_btn);
+        discount = findViewById(R.id.panel_discount_2);
 
         Add_btn();
 
@@ -36,7 +37,7 @@ public class ControlPanel extends Activity {
             add_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(title.getText().toString().equals("") || price.getText().toString().equals("")||color.getText().toString().equals("")||number.getText().toString().equals("") ||image.getText().toString().equals("") ||details.getText().toString().equals(""))
+                    if(title.getText().toString().equals("") || price.getText().toString().equals("")||color.getText().toString().equals("")||number.getText().toString().equals("") ||image.getText().toString().equals("") ||details.getText().toString().equals("") || discount.getText().toString().equals(""))
                         Alert();
                     else
                         InsertIntoDatabase();
@@ -51,11 +52,12 @@ public class ControlPanel extends Activity {
         String detail_= details.getText().toString();
         String color_ = color.getText().toString();
         String img_ = image.getText().toString();
-        int number_ = Integer.valueOf(price.getText().toString());
+        int number_ = Integer.valueOf(number.getText().toString());
         int price_ = Integer.valueOf(price.getText().toString());
+        int discount_ = Integer.valueOf(discount.getText().toString());
 
         DatabaseAccess db = new DatabaseAccess(this);
-        String sql = " Insert into mahsulat(title,price,details,color,img,number) values('"+title_+"','"+price_+"','"+detail_+"','"+color_+"','"+img_+"','"+number_+"')";
+        String sql = "Insert into mahsulat(title,price,details,color,img,number,discount) values('"+title_+"','"+price_+"','"+detail_+"','"+color_+"','"+img_+"','"+number_+"','"+discount_+"')";
         db.getDb().execSQL(sql);
         Respawn();
 

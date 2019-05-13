@@ -1,5 +1,4 @@
 package com.digimamad;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import java.util.List;
 
 public class HomePage extends Activity {
     public static List<Products> products;
-    private ArrayList<String> mImageUrls = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +27,7 @@ public class HomePage extends Activity {
         c.moveToFirst();
         while (!c.isAfterLast()) {
 
+            int discount = c.getInt(7);
             int number = c.getInt(6);
             String image = c.getString(5);
             int id = c.getInt(4);
@@ -36,7 +35,7 @@ public class HomePage extends Activity {
             String details = c.getString(2);
             int price = c.getInt(1);
             String title = c.getString(0);
-            Products p = new Products(title, details, color, price, id, number, image);
+            Products p = new Products(title, details, color, price, id, number, image,discount);
             products.add(p);
             c.moveToNext();
         }
@@ -48,7 +47,7 @@ public class HomePage extends Activity {
     }
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recycle_view);
-        MainPage adapter = new MainPage(this,mImageUrls);
+        MainPage adapter = new MainPage(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

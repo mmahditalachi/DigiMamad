@@ -17,11 +17,9 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
     private static final String TAG = "MainPage";
     public static int number;
     Context context;
-    ArrayList<String> mImages;
 
-    public MainPage(Context context, ArrayList<String> mImages) {
+    public MainPage(Context context) {
         this.context = context;
-        this.mImages = mImages;
     }
 
     @NonNull
@@ -51,7 +49,6 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
             public void onClick(View v) {
                 number = homePage.products.get(i).getId();
                 GoToProduct();
-
             }
         });
 

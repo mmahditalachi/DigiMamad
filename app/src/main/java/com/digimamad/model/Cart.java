@@ -1,7 +1,9 @@
 package com.digimamad.model;
 
-public class Products {
+public class Cart {
+
     private String title;
+    private String username;
     private String image;
     private String details;
     private String color;
@@ -10,8 +12,9 @@ public class Products {
     private int number;
     private int id;
 
-    public Products(String title, String details, String color, int price, int id,int number,String image,int discount) {
+    public Cart(String title, String details, String color, int price, int id,int number,String image,int discount,String username) {
         this.title = title;
+        this.username = username;
         this.details = details;
         this.color = color;
         this.image = image;
@@ -19,6 +22,14 @@ public class Products {
         this.discount = discount;
         this.id = id;
         this.number = number;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getDiscount() {

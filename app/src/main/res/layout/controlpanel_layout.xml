@@ -153,6 +153,29 @@
         android:hint="5"
         android:backgroundTint="@color/green"
         />
+    <TextView
+        android:id="@+id/panel_discount_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panel_number_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="discount"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/panel_discount_2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/panel_discount_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColorHint="@color/gray"
+        android:hint="15"
+        android:backgroundTint="@color/green"
+        />
+
 
     <Button
         android:layout_marginTop="20dp"
@@ -161,8 +184,10 @@
         android:id="@+id/add_btn"
         android:textSize="20dp"
         android:background="@drawable/rounded_btn"
-        android:layout_below="@id/panel_number_2"
+        android:layout_below="@id/panel_discount_2"
         android:layout_height="wrap_content" />
+
+
 
     </RelativeLayout>
     </ScrollView>
