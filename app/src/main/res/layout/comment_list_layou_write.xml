@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/username_comment_list"
@@ -14,15 +13,14 @@
         android:shadowColor="@color/gray"
         android:background="@color/skyblue" />
 
-    <TextView
+    <EditText
         android:id="@+id/text_comment_list"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/username_comment_list"
         android:backgroundTint="@color/green"
         android:textColor="@color/black"
-        android:text="comment"
-        android:textSize="20sp"
+        android:hint="write your comment !"
         />
     <LinearLayout
         android:layout_width="match_parent"
