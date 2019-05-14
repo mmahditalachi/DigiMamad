@@ -101,12 +101,18 @@ public class Login extends Activity {
                 ManagerSearching();
                 UsersSearching();
 
-                if(u_username_correct && u_pass_correct)
+                if(u_username_correct && u_pass_correct) {
                     GoToHomePage();
+                    u_pass_correct =false;
+                    u_username_correct =false;
+                }
 
 
-                else if(m_username_correct && m_pass_correct)
+                else if(m_username_correct && m_pass_correct) {
                     GoToManagerPage();
+                    m_pass_correct=false;
+                    m_username_correct = false;
+                }
 
                 else
                     Alert();

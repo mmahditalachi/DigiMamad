@@ -200,8 +200,7 @@ public class AddressLocation extends FragmentActivity implements OnMapReadyCallb
     }
     public void GoToSignUp()
     {
-        Intent intent = new Intent(this,SignUp.class);
-        startActivity(intent);
+        finish();
     }
 
 
