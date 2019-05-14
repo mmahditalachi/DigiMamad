@@ -47,6 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View v) {
                 DeleteFromDatabase(i);
             }
+//            k,b
         });
 
 
