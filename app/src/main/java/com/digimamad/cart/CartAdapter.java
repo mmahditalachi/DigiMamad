@@ -45,9 +45,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         viewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteFromDatabase(i);
+//                DeleteFromDatabase(i);
             }
-//            k,b
         });
 
 
@@ -60,7 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     {
         int line = i-1;
         DatabaseAccess db = new DatabaseAccess(context);
-        String sql = "Delete from cart where line='"+line+"'";
+        String sql = "Delete from cart where line='"+i+"'";
         db.getDb().execSQL(sql);
     }
 
