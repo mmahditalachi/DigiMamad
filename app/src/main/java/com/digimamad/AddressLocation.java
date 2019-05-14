@@ -62,7 +62,7 @@ public class AddressLocation extends FragmentActivity implements OnMapReadyCallb
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(10 * 1000)
                 .setFastestInterval(1 * 1000);
-
+//nmomo
         MarkerSelected();
     }
     public void MarkerSelected()
