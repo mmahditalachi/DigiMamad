@@ -52,7 +52,7 @@ public class Main extends AppCompatActivity {
                 GoToLogin();
             }
         });
-//        jbjlkkjol
+//        jbjlkljkjol
     }
 
 
