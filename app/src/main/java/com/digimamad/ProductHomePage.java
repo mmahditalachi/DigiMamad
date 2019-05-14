@@ -32,7 +32,6 @@ public class ProductHomePage extends Activity {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 InsertToDatabase();
             }
         });
