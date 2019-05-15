@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProductHomePage extends Activity {
-    private Button addtocart;
+    private Button addtocart,send_comment;
     private ImageView image;
+    private EditText comment;
     private TextView title,detail,price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +22,32 @@ public class ProductHomePage extends Activity {
         image = findViewById(R.id.product_image_product_page);
         detail = findViewById(R.id.information_product_page);
         price = findViewById(R.id.price_product_page);
+        send_comment = findViewById(R.id.send_comment);
+        comment = findViewById(R.id.comment_ed);
         addtocart = findViewById(R.id.addtobag_btn_product_page);
 
         SelectData();
         AddToCart_btn();
+        Send_Comment();
 
+    }
+
+    public void Send_Comment()
+    {
+        send_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Comment();
+            }
+        });
+    }
+    public void Comment()
+    {
+        DatabaseAccess db = new DatabaseAccess(this);
+        int product_id = HomePage.products.get(MainPage.number-1).getDiscount();
+        String comment_ = comment.getText().toString();
+        String sql = "Insert into comments(comment,username,product_id) values('"+comment_+"','"+Login.u_info.get(Login.list_number).getUsername()+"','"+product_id+"')";
+        db.getDb().execSQL(sql);
     }
 
     public void AddToCart_btn()

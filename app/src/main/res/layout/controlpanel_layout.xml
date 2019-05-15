@@ -176,7 +176,6 @@
         android:backgroundTint="@color/green"
         />
 
-
     <Button
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

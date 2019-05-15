@@ -62,7 +62,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         String sql = "Delete from cart where line='"+line+"'";
         db.getDb().execSQL(sql);
         GoTOHomePage();
-
     }
 
     public void GoTOHomePage(){
