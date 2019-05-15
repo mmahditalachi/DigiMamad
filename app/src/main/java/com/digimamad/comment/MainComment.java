@@ -35,11 +35,11 @@ public class MainComment extends Activity {
         c.moveToFirst();
         while(!c.isAfterLast())
         {
-            String text = c.getString(1);
-            int product_id = c.getInt(2);
-            String username = c.getString(3);
-            int like = c.getInt(4);
-            int dislike = c.getInt(5);
+            String text = c.getString(0);
+            int product_id = c.getInt(1);
+            String username = c.getString(2);
+            int like = c.getInt(3);
+            int dislike = c.getInt(4);
 
             Comments comments = new Comments(username,text,product_id, like,dislike);
             comment.add(comments);
