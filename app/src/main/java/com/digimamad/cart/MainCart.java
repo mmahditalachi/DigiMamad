@@ -67,7 +67,6 @@ public class MainCart extends Activity {
 
             String sql = "Insert into orders(username,id,number,line_id,price) values('"+username+"','"+id+"','"+number+"',)";
             db.getDb().execSQL(sql);
-
 //        String sql ="Delete from cart where username='"+Login.u_info.get(Login.list_number).getUsername()+"'";
 //            db.getDb().execSQL(sql1);
 

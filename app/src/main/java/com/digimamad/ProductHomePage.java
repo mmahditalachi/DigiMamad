@@ -39,16 +39,16 @@ public class ProductHomePage extends Activity {
 
     public void InsertToDatabase()
     {
-
         DatabaseAccess db = new DatabaseAccess(this);
+        // number = id and id is started from 1 and our list is started from 0
         String username = Login.u_info.get(Login.list_number).getUsername();
-        String title_= HomePage.products.get(MainPage.number).getTitle();
-        String detail_= HomePage.products.get(MainPage.number).getDetails();
-        String color_ = HomePage.products.get(MainPage.number).getColor();
-        String img_ = HomePage.products.get(MainPage.number).getImage();
-        int number_ = HomePage.products.get(MainPage.number).getNumber();
-        int price_ = HomePage.products.get(MainPage.number).getPrice();
-        int discount_ = HomePage.products.get(MainPage.number).getDiscount();
+        String title_= HomePage.products.get(MainPage.number-1).getTitle();
+        String detail_= HomePage.products.get(MainPage.number-1).getDetails();
+        String color_ = HomePage.products.get(MainPage.number-1).getColor();
+        String img_ = HomePage.products.get(MainPage.number-1).getImage();
+        int number_ = HomePage.products.get(MainPage.number-1).getNumber();
+        int price_ = HomePage.products.get(MainPage.number-1).getPrice();
+        int discount_ = HomePage.products.get(MainPage.number-1).getDiscount();
 
         String sql = "Insert into cart(title,price,details,color,img,number,discount,username) values('"+title_+"','"+price_+"','"+detail_+"','"+color_+"','"+img_+"','"+number_+"','"+discount_+"','"+username+"')";
         db.getDb().execSQL(sql);
