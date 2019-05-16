@@ -2,10 +2,13 @@ package com.digimamad.comment;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.digimamad.DatabaseAccess;
+import com.digimamad.MainPage;
 import com.digimamad.R;
 import com.digimamad.model.Comments;
 
@@ -15,6 +18,7 @@ import java.util.List;
 public class MainComment extends Activity {
 
     public static List<Comments> comment;
+    private static final String TAG =  "MainComment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +33,10 @@ public class MainComment extends Activity {
 
     public void SelectCommentsFromDatabase()
     {
+        Log.d(TAG,"user uses comment function to send comment");
         DatabaseAccess db = new DatabaseAccess(this);
-
-        Cursor c = db.getDb().rawQuery("Select * from comments",null);
+        int id = MainPage.number;
+        Cursor c = db.getDb().rawQuery("Select * from comments where product_id ='"+id+"' ",null);
         c.moveToFirst();
         while(!c.isAfterLast())
         {

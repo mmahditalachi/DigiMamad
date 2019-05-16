@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -103,8 +104,10 @@ public class ProductHomePage extends Activity {
 
     public void Comment()
     {
+
         DatabaseAccess db = new DatabaseAccess(this);
-        int product_id = HomePage.products.get(MainPage.number-1).getDiscount();
+        //correct id of our product
+        int product_id = HomePage.products.get(MainPage.number-1).getId();
         String comment_ = comment.getText().toString();
         String sql = "Insert into comments(comment,username,product_id) values('"+comment_+"','"+Login.u_info.get(Login.list_number).getUsername()+"','"+product_id+"')";
         db.getDb().execSQL(sql);
