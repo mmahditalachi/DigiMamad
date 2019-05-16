@@ -3,6 +3,7 @@ package com.digimamad.cart;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,12 +19,16 @@ import com.digimamad.model.Cart;
 import com.digimamad.model.Products;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MainCart extends Activity {
     public static List<Cart> cartList;
+    private static List<Integer> counter;
     private Button cart_checkout;
     TextView cart_price;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +59,42 @@ public class MainCart extends Activity {
             }
         });
     }
+    public int Counter()
+    {
+        DatabaseAccess db = new DatabaseAccess(this);
+        counter = new ArrayList<>();
+        Cursor c = db.getDb().rawQuery("select order_number from orders",null);
+        c.moveToFirst();
+        while(c.isAfterLast())
+        {
+            int count = c.getInt(0);
+            counter.add(count);
+            c.moveToNext();
+        }
+        int max = Collections.max(counter);
+
+        return(max);
+    }
+
+
     public void FinalizeCheckout()
     {
         DatabaseAccess db = new DatabaseAccess(this);
+        int max = Counter() + 1;
 
         for (int i = 0; i < cartList.size(); i++) {
+
             String username = Login.u_info.get(Login.list_number).getUsername();
             String title = cartList.get(i).getTitle();
-            int id = cartList.get(i).getId();
+            String first_name = Login.u_info.get(Login.list_number).getFirst_name();
+            String last_name = Login.u_info.get(Login.list_number).getLast_name();
+            int product_id = cartList.get(i).getId();
             int number = cartList.get(i).getNumber();
-//            int line_id = cartList.get(i).
+            int price = cartList.get(i).getPrice();
+            int order_id = max;
 
-            String sql = "Insert into orders(username,id,number,line_id,price) values('"+username+"','"+id+"','"+number+"',)";
+            String sql = "Insert into orders(username,product_id,number,price,first_name,last_name,title,order_id) values('"+username+"','"+product_id+"','"+number+"','"+price+"','"+first_name+"','"+last_name+"','"+title+"','"+order_id+"')";
             db.getDb().execSQL(sql);
-//        String sql ="Delete from cart where username='"+Login.u_info.get(Login.list_number).getUsername()+"'";
-//            db.getDb().execSQL(sql1);
-
         }
     }
 

@@ -37,5 +37,22 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/recycle_view">
 
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/gotocart"
+        android:text="Cart"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_btn2"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

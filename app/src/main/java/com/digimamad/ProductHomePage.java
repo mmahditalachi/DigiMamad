@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digimamad.comment.MainComment;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class ProductHomePage extends Activity {
+    private static final String TAG = "ProductHomePage";
     private Button addtocart,send_comment,Show_Comments;
     private ImageView image;
     private EditText comment;
@@ -67,6 +75,7 @@ public class ProductHomePage extends Activity {
                 else {
                     Comment();
                     Successful();
+                    GoToCart();
                 }
             }
         });
@@ -84,6 +93,7 @@ public class ProductHomePage extends Activity {
 //                                    "You clicked on OK", Toast.LENGTH_SHORT).show();
             }
         });
+        alertDialog1.show();
     }
 
     public void Alert()
@@ -126,28 +136,61 @@ public class ProductHomePage extends Activity {
     public void InsertToDatabase()
     {
         DatabaseAccess db = new DatabaseAccess(this);
-        // number = id and id is started from 1 and our list is started from 0
+        // number is id and is started from 1 and our list is started from 0
         String username = Login.u_info.get(Login.list_number).getUsername();
         String title_= HomePage.products.get(MainPage.number-1).getTitle();
         String detail_= HomePage.products.get(MainPage.number-1).getDetails();
         String color_ = HomePage.products.get(MainPage.number-1).getColor();
         String img_ = HomePage.products.get(MainPage.number-1).getImage();
         int number_ = HomePage.products.get(MainPage.number-1).getNumber();
+        int id = MainPage.number;
         int price_ = HomePage.products.get(MainPage.number-1).getPrice();
         int discount_ = HomePage.products.get(MainPage.number-1).getDiscount();
 
-        String sql = "Insert into cart(title,price,details,color,img,number,discount,username) values('"+title_+"','"+price_+"','"+detail_+"','"+color_+"','"+img_+"','"+number_+"','"+discount_+"','"+username+"')";
+        String sql = "Insert into cart(title,price,details,color,img,number,discount,username,id) values('"+title_+"','"+price_+"','"+detail_+"','"+color_+"','"+img_+"','"+number_+"','"+discount_+"','"+username+"','"+id+"')";
         db.getDb().execSQL(sql);
     }
 
+    private void GoToCart()
+    {
+        Intent intent = new Intent(this, MarkerOptions.class);
+        startActivity(intent);
+    }
+    public void NotFound404(String massage)
+    {
+        AlertDialog alertDialog1 = new AlertDialog.Builder(
+                ProductHomePage.this).create();
+
+        alertDialog1.setTitle("404 Not found");
+        alertDialog1.setMessage(massage);
+        alertDialog1.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+//                            Toast.makeText(getApplicationContext(),
+//                                    "You clicked on OK", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialog1.show();
+    }
 
     public void SelectData()
     {
+        Log.d(TAG,"receive data from product list");
         for (int i = 0; i < HomePage.products.size(); i++) {
             if(MainPage.number == HomePage.products.get(i).getId())
             {
                 title.setText(HomePage.products.get(i).getTitle());
-//                image = HomePage.products.get(i).getImage();
+                Bitmap bmp;
+                try {
+                    InputStream in = new java.net.URL(HomePage.products.get(i).getImage()).openStream();
+                    bmp = BitmapFactory.decodeStream(in);
+                    image.setImageBitmap(bmp);
+//                    URL url = new URL(HomePage.products.get(i).getImage());
+//                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                    image.setImageBitmap(bmp);
+                }catch (Exception e){
+//                    Log.e("Error Message", e.getMessage());
+                    NotFound404(e.getMessage());
+                }
                 price.setText(Integer.toString(HomePage.products.get(i).getPrice()));
                 detail.setText(HomePage.products.get(i).getDetails());
             }
