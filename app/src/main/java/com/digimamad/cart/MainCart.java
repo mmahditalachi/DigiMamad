@@ -203,8 +203,19 @@ public class MainCart extends Activity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
             Log.d(TAG,"Swipe action");
+            cart_price.setText( Integer.toString(Integer.valueOf(cart_price.getText().toString()) - cartList.get(viewHolder.getAdapterPosition()).getNumber() * cartList.get(viewHolder.getAdapterPosition()).getPrice()));
+            Delete(cartList.get(viewHolder.getAdapterPosition()).getId());
             cartList.remove(viewHolder.getAdapterPosition());
+
+
         }
     };
+    public void Delete(int position)
+    {
+        DatabaseAccess db = new DatabaseAccess(this);
+        String sql = "delete from cart where id ='"+position+"' ";
+        db.getDb().execSQL(sql);
+    }
+
 
 }

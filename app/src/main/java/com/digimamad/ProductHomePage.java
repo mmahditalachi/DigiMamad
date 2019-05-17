@@ -14,13 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.digimamad.cart.MainCart;
 import com.digimamad.comment.MainComment;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.io.InputStream;
-import java.net.URL;
 
 public class ProductHomePage extends Activity {
     private static final String TAG = "ProductHomePage";
@@ -132,7 +128,7 @@ public class ProductHomePage extends Activity {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(quantity.getText().toString().equals(""))
+                if(quantity.getText().toString().equals("") || quantity.getText().toString().equals("0") || Integer.valueOf(quantity.getText().toString()) > Integer.valueOf(inventory.getText().toString()) )
                     QuantityIsEmpty();
                 else {
                     InsertToDatabase();
@@ -145,13 +141,14 @@ public class ProductHomePage extends Activity {
     {
         AlertDialog alertDialog = new AlertDialog.Builder(ProductHomePage.this).create();
         alertDialog.setTitle("Quantity field");
-        alertDialog.setMessage("fill quantity field");
+        alertDialog.setMessage("fill quantity field whit right number !!");
         alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 //                            Toast.makeText(getApplicationContext(),
 //                                    "You clicked on OK", Toast.LENGTH_SHORT).show();
             }
         });
+        alertDialog.show();
     }
 
     private void InsertToDatabase()
