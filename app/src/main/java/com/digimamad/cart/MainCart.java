@@ -2,11 +2,16 @@ package com.digimamad.cart;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +19,7 @@ import android.widget.TextView;
 import com.digimamad.DatabaseAccess;
 import com.digimamad.HomePage;
 import com.digimamad.Login;
+import com.digimamad.MainPage;
 import com.digimamad.R;
 import com.digimamad.model.Cart;
 
@@ -23,6 +29,7 @@ import java.util.List;
 
 public class MainCart extends Activity {
     public static List<Cart> cartList;
+    private static final String TAG = "MAinCart";
     private static List<Integer> counter;
     private Button cart_checkout;
     TextView cart_price;
@@ -45,7 +52,7 @@ public class MainCart extends Activity {
     {
         int sum=0;
         for (int i = 0; i < cartList.size(); i++) {
-            sum+=cartList.get(i).getPrice();
+            sum+=cartList.get(i).getPrice()*cartList.get(i).getNumber();
         }
         cart_price.setText(Integer.toString(sum));
     }
@@ -57,10 +64,12 @@ public class MainCart extends Activity {
             @Override
             public void onClick(View v) {
                 if(cartList.isEmpty())
-                    IsEmpty();
+                    Alert("fill Quantity field","Ops");
                 else {
                     FinalizeCheckout();
                     UpdateInventory();
+                    DeleteCart();
+                    Alert("thank you for your purchase","purchase is completed");
                     // hesab ha munde
                     GoToHomePage();
                 }
@@ -74,11 +83,15 @@ public class MainCart extends Activity {
         startActivity(intent);
     }
 
-    public void IsEmpty()
+    public void Alert(String massage,String title)
     {
         AlertDialog alertDialog = new AlertDialog.Builder(MainCart.this).create();
-        alertDialog.setTitle("Error");
-        alertDialog.setMessage("cart list is empty");
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(massage);
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
         alertDialog.show();
     }
 
@@ -87,21 +100,16 @@ public class MainCart extends Activity {
     private int Counter()
     {
         DatabaseAccess db = new DatabaseAccess(this);
-        counter = new ArrayList<>();
-        Cursor c = db.getDb().rawQuery("select order_number from orders",null);
-        c.moveToFirst();
-        while(c.isAfterLast())
-        {
-            int count = c.getInt(0);
-            counter.add(count);
-            c.moveToNext();
-        }
-        int max = Collections.max(counter);
 
-        return(max);
+        String sql = "select MAX(order_id) from orders";
+        Cursor c = db.getDb().rawQuery(sql,null);
+        c.moveToFirst();
+        int max = c.getInt(0);
+
+        return(max+1);
     }
 
-    public void UpdateInventory()
+    private void UpdateInventory()
     {
         DatabaseAccess db = new DatabaseAccess(this);
         int count = cartList.size();
@@ -121,10 +129,19 @@ public class MainCart extends Activity {
         }
     }
 
-    public void FinalizeCheckout()
+    private void DeleteCart()
     {
         DatabaseAccess db = new DatabaseAccess(this);
-        int max = Counter() + 1;
+        String sql = "delete from orders where username ='"+Login.u_info.get(Login.list_number).getUsername()+"'";
+        db.getDb().execSQL(sql);
+        cartList.clear();
+    }
+
+
+    private void FinalizeCheckout()
+    {
+        DatabaseAccess db = new DatabaseAccess(this);
+        int max = Counter();
 
         for (int i = 0; i < cartList.size(); i++) {
 
@@ -167,10 +184,27 @@ public class MainCart extends Activity {
             c.moveToNext();
         }
     }
+    private RecyclerView recyclerView;
+    private CartAdapter adapter;
     private void initRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.cart_recycle_view);
-        CartAdapter adapter = new CartAdapter(this);
+        recyclerView = findViewById(R.id.cart_recycle_view);
+        adapter = new CartAdapter(this);
         recyclerView.setAdapter(adapter);
+        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+    ItemTouchHelper.SimpleCallback itemTouchHelper = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT)
+    {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            Log.d(TAG,"Swipe action");
+            cartList.remove(viewHolder.getAdapterPosition());
+        }
+    };
+
 }

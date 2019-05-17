@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.digimamad.cart.MainCart;
 import com.digimamad.comment.MainComment;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -25,8 +26,8 @@ public class ProductHomePage extends Activity {
     private static final String TAG = "ProductHomePage";
     private Button addtocart,send_comment,Show_Comments;
     private ImageView image;
-    private EditText comment;
-    private TextView title,detail,price;
+    private EditText comment,quantity;
+    private TextView title,detail,price,inventory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,9 @@ public class ProductHomePage extends Activity {
         comment = findViewById(R.id.comment_ed);
         addtocart = findViewById(R.id.addtobag_btn_product_page);
         Show_Comments = findViewById(R.id.comment_btn_product_page);
+        inventory = findViewById(R.id.inventory_product_page);
+        quantity = findViewById(R.id.quantity_product_page);
+
 
         SelectData();
         AddToCart_btn();
@@ -123,17 +127,34 @@ public class ProductHomePage extends Activity {
         db.getDb().execSQL(sql);
     }
 
-    public void AddToCart_btn()
+    private void AddToCart_btn()
     {
         addtocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InsertToDatabase();
+                if(quantity.getText().toString().equals(""))
+                    QuantityIsEmpty();
+                else {
+                    InsertToDatabase();
+                    GoToCart();
+                }
+            }
+        });
+    }
+    public void QuantityIsEmpty()
+    {
+        AlertDialog alertDialog = new AlertDialog.Builder(ProductHomePage.this).create();
+        alertDialog.setTitle("Quantity field");
+        alertDialog.setMessage("fill quantity field");
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+//                            Toast.makeText(getApplicationContext(),
+//                                    "You clicked on OK", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void InsertToDatabase()
+    private void InsertToDatabase()
     {
         DatabaseAccess db = new DatabaseAccess(this);
         // number is id and is started from 1 and our list is started from 0
@@ -142,7 +163,8 @@ public class ProductHomePage extends Activity {
         String detail_= HomePage.products.get(MainPage.number-1).getDetails();
         String color_ = HomePage.products.get(MainPage.number-1).getColor();
         String img_ = HomePage.products.get(MainPage.number-1).getImage();
-        int number_ = HomePage.products.get(MainPage.number-1).getNumber();
+//        int number_ = HomePage.products.get(MainPage.number-1).getNumber();
+        int number_ = Integer.valueOf(quantity.getText().toString());
         int id = MainPage.number;
         int price_ = HomePage.products.get(MainPage.number-1).getPrice();
         int discount_ = HomePage.products.get(MainPage.number-1).getDiscount();
@@ -153,7 +175,7 @@ public class ProductHomePage extends Activity {
 
     private void GoToCart()
     {
-        Intent intent = new Intent(this, MarkerOptions.class);
+        Intent intent = new Intent(this, MainCart.class);
         startActivity(intent);
     }
     public void NotFound404(String massage)
@@ -191,6 +213,7 @@ public class ProductHomePage extends Activity {
 //                    Log.e("Error Message", e.getMessage());
                     NotFound404(e.getMessage());
                 }
+                inventory.setText(Integer.toString(HomePage.products.get(i).getNumber()));
                 price.setText(Integer.toString(HomePage.products.get(i).getPrice()));
                 detail.setText(HomePage.products.get(i).getDetails());
             }

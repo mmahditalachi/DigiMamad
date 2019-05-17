@@ -36,6 +36,7 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
         viewHolder.imagetext.setText(homePage.products.get(i).getTitle());
         viewHolder.price.setText(Integer.toString(homePage.products.get(i).getPrice()));
 
+
         viewHolder.parent_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

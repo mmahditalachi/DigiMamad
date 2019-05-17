@@ -24,7 +24,6 @@ public class HomePage extends Activity {
         initImageBitmaps();
 
         goto_ntn = findViewById(R.id.gotocart);
-
         goto_ntn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
