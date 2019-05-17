@@ -1,9 +1,10 @@
 package com.digimamad.cart;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,13 +14,10 @@ import android.widget.TextView;
 import com.digimamad.DatabaseAccess;
 import com.digimamad.HomePage;
 import com.digimamad.Login;
-import com.digimamad.MainPage;
 import com.digimamad.R;
 import com.digimamad.model.Cart;
-import com.digimamad.model.Products;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,6 +38,7 @@ public class MainCart extends Activity {
         SelectDataFromDatabase();
         initRecyclerView();
         TotalPrice();
+        Checkout_btn();
     }
 
     public void TotalPrice()
@@ -50,16 +49,42 @@ public class MainCart extends Activity {
         }
         cart_price.setText(Integer.toString(sum));
     }
+
+
     public void Checkout_btn()
     {
         cart_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FinalizeCheckout();
+                if(cartList.isEmpty())
+                    IsEmpty();
+                else {
+                    FinalizeCheckout();
+                    UpdateInventory();
+                    // hesab ha munde
+                    GoToHomePage();
+                }
             }
         });
     }
-    public int Counter()
+
+    public void GoToHomePage()
+    {
+        Intent intent = new Intent(this,HomePage.class);
+        startActivity(intent);
+    }
+
+    public void IsEmpty()
+    {
+        AlertDialog alertDialog = new AlertDialog.Builder(MainCart.this).create();
+        alertDialog.setTitle("Error");
+        alertDialog.setMessage("cart list is empty");
+        alertDialog.show();
+    }
+
+
+
+    private int Counter()
     {
         DatabaseAccess db = new DatabaseAccess(this);
         counter = new ArrayList<>();
@@ -76,6 +101,25 @@ public class MainCart extends Activity {
         return(max);
     }
 
+    public void UpdateInventory()
+    {
+        DatabaseAccess db = new DatabaseAccess(this);
+        int count = cartList.size();
+        for (int i = 0; i < HomePage.products.size() ; i++) {
+            for (int j = 0; j <cartList.size() ; j++) {
+                if(HomePage.products.get(i).getId() == cartList.get(j).getId())
+                {
+                    int new_inventory = HomePage.products.get(i).getNumber() -  cartList.get(j).getNumber();
+                    count--;
+                    String sql = "Update mahsulat set number = '"+new_inventory+"' where id = '"+HomePage.products.get(i).getId()+"'";
+                    db.getDb().execSQL(sql);
+
+                    if(count == 0)
+                        break;
+                }
+            }
+        }
+    }
 
     public void FinalizeCheckout()
     {
@@ -95,6 +139,7 @@ public class MainCart extends Activity {
 
             String sql = "Insert into orders(username,product_id,number,price,first_name,last_name,title,order_id) values('"+username+"','"+product_id+"','"+number+"','"+price+"','"+first_name+"','"+last_name+"','"+title+"','"+order_id+"')";
             db.getDb().execSQL(sql);
+
         }
     }
 
