@@ -60,6 +60,7 @@ public class MainCart extends Activity {
 
     public void Checkout_btn()
     {
+        Log.d("checkout","idk");
         cart_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +72,7 @@ public class MainCart extends Activity {
                     DeleteCart();
                     Alert("thank you for your purchase","purchase is completed");
                     // hesab ha munde
-                    GoToHomePage();
+//                    GoToHomePage();
                 }
             }
         });
@@ -99,6 +100,7 @@ public class MainCart extends Activity {
 
     private int Counter()
     {
+        Log.d("counter","check");
         DatabaseAccess db = new DatabaseAccess(this);
 
         String sql = "select MAX(order_id) from orders";
@@ -132,7 +134,7 @@ public class MainCart extends Activity {
     private void DeleteCart()
     {
         DatabaseAccess db = new DatabaseAccess(this);
-        String sql = "delete from orders where username ='"+Login.u_info.get(Login.list_number).getUsername()+"'";
+        String sql = "delete from cart where username ='"+Login.u_info.get(Login.list_number).getUsername()+"'";
         db.getDb().execSQL(sql);
         cartList.clear();
     }
@@ -140,6 +142,7 @@ public class MainCart extends Activity {
 
     private void FinalizeCheckout()
     {
+        Log.d("Finalize","check");
         DatabaseAccess db = new DatabaseAccess(this);
         int max = Counter();
 
@@ -156,7 +159,6 @@ public class MainCart extends Activity {
 
             String sql = "Insert into orders(username,product_id,number,price,first_name,last_name,title,order_id) values('"+username+"','"+product_id+"','"+number+"','"+price+"','"+first_name+"','"+last_name+"','"+title+"','"+order_id+"')";
             db.getDb().execSQL(sql);
-
         }
     }
 
@@ -206,8 +208,6 @@ public class MainCart extends Activity {
             cart_price.setText( Integer.toString(Integer.valueOf(cart_price.getText().toString()) - cartList.get(viewHolder.getAdapterPosition()).getNumber() * cartList.get(viewHolder.getAdapterPosition()).getPrice()));
             Delete(cartList.get(viewHolder.getAdapterPosition()).getId());
             cartList.remove(viewHolder.getAdapterPosition());
-
-
         }
     };
     public void Delete(int position)

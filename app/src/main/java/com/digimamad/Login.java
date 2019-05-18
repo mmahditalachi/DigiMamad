@@ -201,7 +201,7 @@ public class Login extends Activity {
 
     public void GoToManagerPage()
     {
-        Intent intent = new Intent(this,ControlPanel.class);
+        Intent intent = new Intent(this,AdminMainPage.class);
         startActivity(intent);
     }
 

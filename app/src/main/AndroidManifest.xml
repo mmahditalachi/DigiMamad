@@ -46,7 +46,9 @@
         </activity>
         <activity
             android:name=".HomePage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -89,6 +91,20 @@
         <activity
             android:name=".cart.MainCart"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AdminMainPage"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".orders.MainOrder"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

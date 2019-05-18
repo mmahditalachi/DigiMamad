@@ -1,20 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:openDrawer="start"
+    >
 
-    <android.support.v7.widget.RecyclerView
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/recycle_view">
-    </android.support.v7.widget.RecyclerView>
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/gotocart"
-        android:text="Cart"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:background="@drawable/rounded_btn2"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-</RelativeLayout>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="427dp"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/recycle_view">
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/gotocart"
+            android:text="Cart"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:background="@drawable/rounded_btn2"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+
+
+
+</android.support.v4.widget.DrawerLayout>
+
