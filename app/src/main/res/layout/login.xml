@@ -16,7 +16,7 @@
         android:hint="Username"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="252dp" />
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="88dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         android:layout_y="318dp"
         android:hint="Password"
         android:ems="10"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:textColor="@color/green"
+        android:textColor="@color/winered"
         android:textStyle="bold"
         android:layout_centerInParent="true"
         android:layout_below="@id/login-btn"

@@ -113,7 +113,7 @@
         android:layout_below="@+id/send_comment"
         android:text="Comments"
         android:textSize="20sp"
-        android:background="@color/green"
+        android:background="@color/winered"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"/>
     <Button
@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:text="Add to cart"
         android:layout_below="@+id/comment_btn_product_page"
-        android:background="@color/green"
+        android:background="@color/winered"
         android:textSize="20sp"
         android:textStyle="bold
 "/>

@@ -31,7 +31,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="Name"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
          />
 
     <TextView
@@ -55,7 +55,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="phone..."
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
 
     <TextView
@@ -79,7 +79,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="20"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
 
     <TextView
@@ -103,7 +103,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="http://..."
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
 
     <TextView
@@ -127,7 +127,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="red"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
 
     <TextView
@@ -151,7 +151,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="5"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
     <TextView
         android:id="@+id/panel_discount_1"
@@ -173,7 +173,7 @@
         android:textSize="20dp"
         android:textColorHint="@color/gray"
         android:hint="15"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/winered"
         />
 
     <Button
