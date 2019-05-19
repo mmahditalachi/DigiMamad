@@ -8,10 +8,17 @@ import android.database.Cursor;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,8 +34,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainCart extends Activity {
+public class MainCart extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static List<Cart> cartList;
+    private DrawerLayout drawerLayout;
     private static final String TAG = "MAinCart";
     private static List<Integer> counter;
     private Button cart_checkout;
@@ -46,6 +54,21 @@ public class MainCart extends Activity {
         initRecyclerView();
         TotalPrice();
         Checkout_btn();
+
+        drawerLayout = findViewById(R.id.drawer_layout_cart);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_cart);
+        setSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView =findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.nav_cart);
+
     }
 
     public void TotalPrice()
@@ -95,7 +118,6 @@ public class MainCart extends Activity {
         });
         alertDialog.show();
     }
-
 
 
     private int Counter()
@@ -216,6 +238,21 @@ public class MainCart extends Activity {
         String sql = "delete from cart where id ='"+position+"' ";
         db.getDb().execSQL(sql);
     }
+    public void GoToHome()
+    {
+        Intent intent = new Intent(this,HomePage.class);
+        startActivity(intent);
+    }
 
-
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId())
+        {
+            case R.id.nav_home:
+                GoToHome();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

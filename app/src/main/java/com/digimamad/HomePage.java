@@ -47,14 +47,8 @@ public class HomePage extends AppCompatActivity implements  NavigationView.OnNav
         toggle.syncState();
 
         NavigationView navigationView =findViewById(R.id.nav_view);
-
-        goto_ntn = findViewById(R.id.gotocart);
-        goto_ntn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GoToCart();
-            }
-        });
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     @Override

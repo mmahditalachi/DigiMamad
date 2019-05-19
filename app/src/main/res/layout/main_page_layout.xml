@@ -36,13 +36,6 @@
             android:id="@+id/recycle_view">
         </android.support.v7.widget.RecyclerView>
 
-        <Button
-            android:id="@+id/gotocart"
-            android:text="Cart"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:background="@drawable/rounded_btn2"
-            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 
@@ -54,7 +47,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
-
 
 
 </android.support.v4.widget.DrawerLayout>

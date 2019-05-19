@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.nfc.Tag;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.digimamad.cart.MainCart;
 import com.digimamad.comment.MainComment;
 import java.io.InputStream;
+import java.net.URL;
 
 public class ProductHomePage extends Activity {
     private static final String TAG = "ProductHomePage";
@@ -208,6 +210,7 @@ public class ProductHomePage extends Activity {
 //                    image.setImageBitmap(bmp);
                 }catch (Exception e){
 //                    Log.e("Error Message", e.getMessage());
+                    e.printStackTrace();
                     NotFound404(e.getMessage());
                 }
                 inventory.setText(Integer.toString(HomePage.products.get(i).getNumber()));
@@ -216,5 +219,7 @@ public class ProductHomePage extends Activity {
             }
         }
     }
+
+
 }
 
