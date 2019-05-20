@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.digimamad.DatabaseAccess;
 import com.digimamad.HomePage;
+import com.digimamad.Information;
 import com.digimamad.Login;
 import com.digimamad.MainPage;
 import com.digimamad.R;
@@ -56,7 +57,6 @@ public class MainCart extends AppCompatActivity implements NavigationView.OnNavi
         Checkout_btn();
 
         drawerLayout = findViewById(R.id.drawer_layout_cart);
-
         Toolbar toolbar = findViewById(R.id.toolbar_cart);
         setSupportActionBar(toolbar);
 
@@ -244,12 +244,22 @@ public class MainCart extends AppCompatActivity implements NavigationView.OnNavi
         startActivity(intent);
     }
 
+    public void GoToInformation()
+    {
+        Intent intent = new Intent(this, Information.class);
+        startActivity(intent);
+    }
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId())
         {
             case R.id.nav_home:
                 GoToHome();
+                break;
+            case R.id.nav_information:
+                GoToInformation();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

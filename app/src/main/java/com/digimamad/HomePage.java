@@ -65,6 +65,11 @@ public class HomePage extends AppCompatActivity implements  NavigationView.OnNav
         Intent intent = new Intent(this, MainCart.class);
         startActivity(intent);
     }
+    private void GoToInformation()
+    {
+        Intent intent = new Intent(this, Information.class);
+        startActivity(intent);
+    }
 
     public void SelectDataFromDatabase()
     {
@@ -105,6 +110,9 @@ public class HomePage extends AppCompatActivity implements  NavigationView.OnNav
         switch (menuItem.getItemId()){
             case R.id.nav_cart:
                 GoToCart();
+                break;
+            case R.id.nav_information:
+                GoToInformation();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
