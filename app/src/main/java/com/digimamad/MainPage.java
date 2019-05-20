@@ -30,6 +30,7 @@ public class MainPage extends RecyclerView.Adapter<MainPage.ViewHolder>{
         return viewHolder;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder,final int i) {
         final HomePage homePage = new HomePage();
